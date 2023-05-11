@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  url: DATABASE_URL
+  url:  <%= ENV['DATABASE_URL'] %>
 #  database: odyssey_production
 #  username: odyssey
 #  password: <%#= ENV["ODYSSEY_DATABASE_PASSWORD"] %>
