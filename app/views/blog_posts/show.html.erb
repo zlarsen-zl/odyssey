@@ -1,3 +1,5 @@
+
+<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
 <h1><%= @blog_post.title %></h1>
 <div class="trix-content">
   <%= @blog_post.content %>
