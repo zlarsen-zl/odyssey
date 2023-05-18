@@ -20,11 +20,11 @@ const options = {
 
 const collapse = new Collapse($targetEl, $triggerEl, options);
 
-// show the target element
-collapse.expand();
-
 // hide the target element
 collapse.collapse();
+
+// show the target element
+collapse.expand();
 
 // toggle the visibility of the target element
 collapse.toggle();
