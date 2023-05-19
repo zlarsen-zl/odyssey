@@ -10,7 +10,7 @@
       <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
     <% end %>
     <div class="trix-content">
-      <%= blog_post.content %>
+      <%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %>
     </div>
   </div>
 <% end %>

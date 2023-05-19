@@ -5,9 +5,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*',
-    "./src/**/*.{html,js}",
-    "./node_modules/tw-elements/dist/js/**/*.js",
-    './node_modules/flowbite/**/*.js'
+    "./src/**/*.{html,js}"
   ],
   theme: {
     extend: {
@@ -21,9 +19,7 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/container-queries'),
-    require("tw-elements/dist/plugin.cjs"),
-    require('flowbite/plugin')
+    require('@tailwindcss/container-queries')
   ],
   darkMode: "class"
 }
