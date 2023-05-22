@@ -11,13 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-neutral-100">
     <div>
       <%= render partial: "layouts/navbar" %>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div class="bg-neutral-100">
+    <div >
       <%= yield %>
     </div>
   </body>

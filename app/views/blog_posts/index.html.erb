@@ -2,16 +2,29 @@
 <div class="prose mx-8 sm:mx-auto">
   <h1>My Blog Posts</h1>
   <% @blog_posts.each do |blog_post| %>
-    <div class="bg-white rounded p-10 mt-10">
-      <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
-      <h3> <%= link_to blog_post.title, blog_post %> </h3>
-      <% if blog_post.draft? %>
-        <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
-      <% elsif blog_post.scheduled?%>
-        <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
-      <% end %>
-      <div class="trix-content">
-        <%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %>
+
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-10">
+      <div class="md:flex">
+        <div class="md:shrink-0">
+          <% if blog_post.cover_image.present? %>
+              <%= image_tag blog_post.cover_image, class: "h-48 w-full object-cover md:h-full md:w-48 my-0" %>
+          <%end %>
+        </div>
+        <div class="p-8">
+          <%= link_to blog_post.title, blog_post, class: "text-2xl uppercase underline decoration-purple-600 hover:decoration-purple-200 underline-offset-8 font-bold"%>
+<!--          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Company retreats</div>-->
+          <% if blog_post.draft? %>
+            <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+          <% elsif blog_post.scheduled?%>
+            <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
+          <% end %>
+          <div class="font-light text-sm mt-3">
+            <% if blog_post.published? %>
+              <%= blog_post.published_at.to_date %>
+            <% end %>
+          </div>
+          <p class="mt-2 text-slate-500"><%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %></p>
+        </div>
       </div>
     </div>
   <% end %>
