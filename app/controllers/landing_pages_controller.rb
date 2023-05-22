@@ -1,4 +1,4 @@
-class BlogPostsController < ApplicationController
+class LandingPagesController < ApplicationController
   def index
   end
 
