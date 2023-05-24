@@ -1,5 +1,5 @@
 require_relative "boot"
-
+require "active_storage/engine"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -10,7 +10,7 @@ module Odyssey
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.active_storage.variant_processor = :vips
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
