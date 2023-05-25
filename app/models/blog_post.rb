@@ -10,6 +10,12 @@ class BlogPost < ApplicationRecord
   scope :published, -> { where("published_at <= ?", Time.current) }
   scope :scheduled, -> { where("published_at > ?", Time.current) }
 
+  enum tag: {
+    travel: 'travel',
+    code: 'code',
+    food: 'food',
+    offbeat: 'offbeat',
+  }, _prefix: true
   def draft?
     published_at.nil?
   end

@@ -1,121 +1,41 @@
-<div class="flex flex-row">
+<div class="flex flex-row mt-5">
   <div class="hidden lg:flex lg:basis-1/4"></div>
-  <div class="basis-full lg:basis-2/4" >
-    <% @blog_posts.each do |blog_post| %>
-
-      <div class="grow bg-white rounded-xl overflow-hidden lg:max-w-2xl lg:mx-auto mt-5 mx-5">
-        <div class="lg:flex">
-          <div class="lg:shrink-0">
-            <% if blog_post.cover_image.present? %>
-              <%= image_tag blog_post.cover_image.variant(resize_to_fill: [400, 400, crop: :attention]), class: "h-48 w-full object-cover lg:h-full lg:w-48 my-0" %>
-            <%end %>
-          </div>
-          <div class="p-8">
-            <%= link_to blog_post.title, blog_post, class: "text-2xl uppercase underline decoration-purple-600 hover:decoration-purple-200  underline-offset-8 font-bold"%>
-            <% if blog_post.draft? %>
-              <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
-            <% elsif blog_post.scheduled?%>
-              <div class="p-2 rounded bg-blue-100 text-blue-900">Scheduled</div>
-            <% end %>
-            <div class="font-light text-sm mt-3">
-              <% if blog_post.published? %>
-                <%= blog_post.published_at.to_date %>
-              <% end %>
-            </div>
-            <p class="mt-2 text-slate-500"><%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %></p>
+    <div class="basis-full lg:basis-2/4">
+      <% @blog_posts.each do |blog_post| %>
+        <div class="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow">
+          <% if blog_post.cover_image.present? %>
+            <%= image_tag blog_post.cover_image %>
+          <%end %>
+          <div class="p-4">
+            <p class="mb-1 text-sm text-primary-500">Zoe Larsen •
+              <time>
+                <% if blog_post.published? %>
+                  <%= blog_post.published_at.to_date %>
+                <% end %>
+              </time>
+            </p>
+            <h3 class="text-xl font-medium text-gray-900 underline">
+              <%= link_to blog_post.title, blog_post %>
+            </h3>
+            <p class="mt-1 text-gray-500">
+              <%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %>
+            </p>
+            <span
+            class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold "
+            >
+              #<%= blog_post.tag %>
+            </span>
           </div>
         </div>
+      <% end %>
+    </div>
+    <div class="hidden lg:flex lg:basis-1/4">
+      <%= render partial: "landing_pages/about_me" %>
+    </div>
+    <% if @pagy.count > @pagy.items %>
+      <div class="my-16">
+        <%== pagy_nav(@pagy) %>
       </div>
     <% end %>
   </div>
-  <div class="hidden lg:flex lg:basis-1/4"><%= render partial: "landing_pages/about_me" %></div>
-</div>
-
-
-<!-- component -->
-<!--<section class="bg-white dark:bg-gray-900">-->
-<!--  <div class="container px-6 py-10 mx-auto">-->
-<!--    <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>-->
-
-<!--    <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">-->
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            How to use sticky note for problem solving-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 October 2019</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            How to use sticky note for problem solving-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 October 2019</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1544654803-b69140b285a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            Morning routine to boost your mood-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 25 November 2020</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1530099486328-e021101a494a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1547&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            All the features you want to know-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 30 September 2020</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1484&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            Minimal workspace for your inspirations-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 13 October 2019</span>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="lg:flex">-->
-<!--        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">-->
-
-<!--        <div class="flex flex-col justify-between py-6 lg:mx-6">-->
-<!--          <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">-->
-<!--            What do you want to know about Blockchane-->
-<!--          </a>-->
-
-<!--          <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 October 2019</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-  <% if @pagy.count > @pagy.items %>
-    <div class="my-16">
-      <%== pagy_nav(@pagy) %>
-    </div>
-  <% end %>
 </div>

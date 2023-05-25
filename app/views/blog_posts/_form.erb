@@ -32,5 +32,8 @@
     <%= form.datetime_select :published_at, include_blank: true %>
   </div>
 
+  <%= form.label :tag %>
+  <%= form.select :tag, options_for_select(BlogPost.tags.map {|key, value| [key.titleize, BlogPost.tags.key(value)]}, selected: @blog_post.tag || :travel) %>
+
   <%= form.button %>
 <% end %>
