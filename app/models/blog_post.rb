@@ -1,4 +1,5 @@
 class BlogPost < ApplicationRecord
+  include Filterable
   has_rich_text :content
   has_one_attached  :cover_image
 
@@ -9,6 +10,7 @@ class BlogPost < ApplicationRecord
   scope :draft, -> { where(published_at: nil) }
   scope :published, -> { where("published_at <= ?", Time.current) }
   scope :scheduled, -> { where("published_at > ?", Time.current) }
+  scope :filter_by_tag, -> (tag) { where tag: tag }
 
   enum tag: {
     travel: 'travel',

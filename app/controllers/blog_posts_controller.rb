@@ -2,7 +2,9 @@ class BlogPostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_blog_post, only: [:show, :edit, :update, :destrpy]
   def index
-    @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
+    @blog_posts = user_signed_in? ?
+                    BlogPost.filter(params.slice(:tag)).sorted :
+                    BlogPost.filter(params.slice(:tag)).published.sorted
     @pagy, @blog_posts = pagy(@blog_posts)
   rescue Pagy::OverflowError
     redirect_to root_path(page: 1)

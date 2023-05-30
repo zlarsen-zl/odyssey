@@ -24,8 +24,8 @@
       <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1 mt-1 sm:mt-0 sm:ml-2" %>
     <% else %>
       <a href="/" class="block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1">Home</a>
-      <a href="/" class="block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1 mt-1 sm:mt-0 sm:ml-2">Developers</a>
-      <a href="/" class="block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1 mt-1 sm:mt-0 sm:ml-2">Cool Stuff</a>
+      <a href=<%= landing_page_about_me_path %> class="block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1 mt-1 sm:mt-0 sm:ml-2">About Me</a>
+<!--      <a href="/" class="block text-zinc-800 font-semibold hover:bg-gray-200 rounded px-2 py-1 mt-1 sm:mt-0 sm:ml-2">Cool Stuff</a>-->
     <% end %>
   </div>
 </header>
