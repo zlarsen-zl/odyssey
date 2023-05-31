@@ -35,7 +35,7 @@
 <!--                <div class="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block">-->
 <!--                  Superhost</div>-->
               </div>
-              <h3 class="font-black text-gray-800 md:text-3xl text-xl"><%= link_to blog_post.title, blog_post %></h3>
+              <h3 class="font-black text-gray-800 md:text-3xl text-xl"><%= link_to blog_post.title, blog_post, class: "hover:text-purple-500" %></h3>
               <p class="md:text-lg text-gray-500 text-base"><%= truncate(blog_post.content.to_plain_text, length: 200, separator: ' ') %></p>
               <p class="text-sm font-black text-gray-800">
                 <% if blog_post.published? %>
